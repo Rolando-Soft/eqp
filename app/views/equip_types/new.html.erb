@@ -1,0 +1,10 @@
+<%= form_with(model: @equip_type) do |f| %>
+  <div class="mb-3 mt-5">
+    <%= f.label :description, class: "form-label" %>
+  </div>
+  <div class="mb-3">
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

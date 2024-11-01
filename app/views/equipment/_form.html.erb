@@ -1,0 +1,55 @@
+<%= form_with(model: equip) do |f| %>
+  <% if equip.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(equip.errors.count, "error") %> prohibited this equipment from being saved:</h2>
+
+      <ul>
+        <% equip.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :serial1, "Serial", class:"form-label" %>
+    <%= f.text_field :serial1, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :serial2, "Serial 2", class:"form-label"  %>
+    <%= f.text_field :serial2, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :mac1, "Mac number", class:"form-label"  %>
+    <%= f.text_field :mac1, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :tech_id, "Tech Num", class:"form-label"  %>
+    <%= f.text_field :tech_id, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :equip_type_id, "Equipment Type", class: "form-label" %>
+    <%= f.collection_select :equip_type_id, @equip_types, :id, :description, { prompt: "Select Equipment Type" }, { class: "form-control" } %>
+  </div>
+
+  <div class="mb-5" data-controller="warranty">
+    <%= f.label :warranty_exp, "Warranty Expiration", class:"form-label"  %>
+    <% if equip.warranty_exp.present?%>
+      <%= f.date_field :warranty_exp, class: "form-control mb-3", data: { target: "warranty.warrantyExp" } %>
+    <% else %>
+      <%= f.date_field :warranty_exp, value: Date.tomorrow, class: "form-control mb-3", data: { target: "warranty.warrantyExp" } %>
+    <% end %>
+    <button type="button" class="btn btn-secondary me-2" data-action="click->warranty#addNinetyDays">90 days</button>
+    <button type="button" class="btn btn-secondary me-2" data-action="click->warranty#add365Days">1 year</button>
+    <button type="button" class="btn btn-secondary" data-action="click->warranty#add1095Days">3 years</button>
+  </div>
+
+  <div class="text-center">
+    <%= f.submit class: "btn btn-primary me-3" %>
+    <%= link_to "Cancel", equipment_index_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

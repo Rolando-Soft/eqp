@@ -1,0 +1,48 @@
+<h1 class="mb-3">Equipment Detail</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Field</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Serial 1</td>
+      <td><%= @equipment.serial1 %></td>
+    </tr>
+    <tr>
+      <td>Serial 2</td>
+      <td><%= @equipment.serial2 %></td>
+    </tr>
+    <tr>
+      <td>Mac 1</td>
+      <td><%= @equipment.mac1 %></td>
+    </tr>
+    <tr>
+      <td>Tech ID</td>
+      <td><%= @equipment.tech_id %></td>
+    </tr>
+    <tr>
+      <td>Equipment Type</td>
+      <td><%= @equipment.equip_type.description %></td>
+    </tr>
+    <% if warrant_to_expire?(@equipment) %>
+      <tr class="table-danger">
+          <td>Warranty Expiration</td>
+          <td><%= @equipment.warranty_exp %></td>
+      </tr>
+    <% else %>
+      <tr>
+        <td>Warranty Expiration</td>
+        <td><%= @equipment.warranty_exp %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="d-flex justify-content-evenly">
+  <%= link_to "OK", equipment_index_path, class: "btn btn-primary"   %>
+  <%= button_to  "Delete", @equipment, method: :delete, class: "btn btn-danger" %>
+</div>
+

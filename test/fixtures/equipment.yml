@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  serial1: MyString
+  serial2: MyString
+  mac1: MyString
+  techid: MyString
+  equip_type: one
+  warranty_exp: 2024-10-31
+
+two:
+  serial1: MyString
+  serial2: MyString
+  mac1: MyString
+  techid: MyString
+  equip_type: two
+  warranty_exp: 2024-10-31
