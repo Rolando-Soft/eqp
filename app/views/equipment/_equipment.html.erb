@@ -1,5 +1,3 @@
-<h1 class="mb-3">Equipment Detail</h1>
-
 <table class="table">
   <thead>
     <tr>
@@ -28,21 +26,21 @@
       <td>Equipment Type</td>
       <td><%= @equipment.equip_type.description %></td>
     </tr>
-    <% if warrant_to_expire?(@equipment) %>
+    <% if warranty_to_expire?(@equipment) %>
       <tr class="table-danger">
           <td>Warranty Expiration</td>
-          <td><%= @equipment.warranty_exp %></td>
+          <td><%= @equipment.warranty_exp.strftime("%b %d, %y") %></td>
       </tr>
     <% else %>
       <tr>
         <td>Warranty Expiration</td>
-        <td><%= @equipment.warranty_exp %></td>
+        <td><%= @equipment.warranty_exp.strftime("%b %d, %y") %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<div class="d-flex justify-content-evenly">
+<div class="d-flex justify-content-evenly" data-controller="deleteconf">
   <%= link_to "OK", equipment_index_path, class: "btn btn-primary"   %>
-  <%= button_to  "Delete", @equipment, method: :delete, class: "btn btn-danger" %>
+  <%= button_to  "Delete", @equipment, method: :delete, data: {action: "click->deleteconf#delete"}, class: "btn btn-danger" %>
 </div>
 

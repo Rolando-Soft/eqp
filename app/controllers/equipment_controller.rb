@@ -41,7 +41,7 @@ class EquipmentController < ApplicationController
     @equipment = Equipment.find(params[:id])
     @equipment.destroy
 
-    redirect_to equipment_index_path
+    redirect_to equipment_index_path, status: :see_other
   end
 
   private
