@@ -1,7 +1,8 @@
+
 <h1>Equipment List</h1>
 <div class="shadow p-3 mt-4 rounded">
 <%= link_to "Add Equipment", new_equipment_path, class: "btn btn-primary mt-4 mb-3" %>
-<table class="table">
+  <table class="table">
   <thead>
     <tr>
       <th scope="col">Serial</th>
@@ -10,7 +11,7 @@
   </thead>
 
   <tbody>
-    <% if @equipment.present? %>
+  <% if @equipment.present? %>
       <% @equipment.each do |equip| %>
         <tr>
           <td>
@@ -38,4 +39,7 @@
     <% end %>
   </tbody>
 </table>
+  <div class="tooltip1">Hover
+    <span class="tooltip1text">Hello</span>
+  </div>
 </div>

@@ -14,11 +14,11 @@ class EquipmentController < ApplicationController
 
   def create
     @equipment = Equipment.new(equipment_params)
-
     if @equipment.save
-      redirect_to equipment_index_path
+      redirect_to equipment_index_path, notice: 'Equipment was successfully created.'
     else
-      render 'new'
+      @equip_types = EquipType.all
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -29,10 +29,10 @@ class EquipmentController < ApplicationController
 
   def update
     @equipment = Equipment.find(params[:id])
-
     if @equipment.update(equipment_params)
       redirect_to equipment_index_path
     else
+      @equip_types = EquipType.all
       render 'edit'
     end
   end

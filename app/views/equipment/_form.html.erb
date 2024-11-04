@@ -1,10 +1,10 @@
 <%= form_with(model: equip) do |f| %>
-  <% if equip.errors.any? %>
+  <% if @equipment.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(equip.errors.count, "error") %> prohibited this equipment from being saved:</h2>
+      <h2><%= pluralize(@equipment.errors.count, "error") %> prohibited this equipment from being saved:</h2>
 
       <ul>
-        <% equip.errors.full_messages.each do |message| %>
+        <% @equipment.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -33,10 +33,13 @@
 
   <div class="mb-3">
     <%= f.label :equip_type_id, "Equipment Type", class: "form-label" %>
-    <%= f.collection_select :equip_type_id, @equip_types, :id, :description, { prompt: "Select Equipment Type" }, { class: "form-control" } %>
+    <%#= f.collection_select :equip_type_id, @equip_types, :id, :description, { prompt: "Select Equipment Type" }, { class: "form-control" } %>
+    #Testing collection
+    <%= f.collection_select(:equip_type_id, @equip_types, :id, :description, { prompt: "Select Equipment Type" }, { class: "form-control" }) %>
   </div>
 
   <div class="mb-5" data-controller="warranty">
+    <% Time.zone = "America/Puerto_Rico" %>
     <%= f.label :warranty_exp, "Warranty Expiration", class:"form-label"  %>
     <% if equip.warranty_exp.present?%>
       <%= f.date_field :warranty_exp, class: "form-control mb-3", data: { target: "warranty.warrantyExp" } %>

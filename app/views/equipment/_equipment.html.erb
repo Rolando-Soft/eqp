@@ -31,6 +31,9 @@
           <td>Warranty Expiration</td>
           <td><%= @equipment.warranty_exp.strftime("%b %d, %y") %></td>
       </tr>
+      <tr class="form-text">
+        <td class="text-danger">Warranty will expire in less than 30 days.</td>
+      <tr>
     <% else %>
       <tr>
         <td>Warranty Expiration</td>
@@ -39,8 +42,28 @@
     <% end %>
   </tbody>
 </table>
-<div class="d-flex justify-content-evenly" data-controller="deleteconf">
+<div class="d-flex justify-content-evenly">
   <%= link_to "OK", equipment_index_path, class: "btn btn-primary"   %>
-  <%= button_to  "Delete", @equipment, method: :delete, data: {action: "click->deleteconf#delete"}, class: "btn btn-danger" %>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+    Delete
+  </button>
 </div>
 
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirm Equipment Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this record?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <%= button_to "Delete", @equipment, method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
