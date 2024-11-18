@@ -3,6 +3,10 @@ class EquipmentController < ApplicationController
     @equipment = Equipment.all
   end
 
+  def search
+    @serial = Equipment.sanitize_sql_like(params[:serial])
+    @serial = Equipment.where("serial1 LIKE ?", "%#{@serial}%")
+  end
   def show
     @equipment = Equipment.find(params[:id])
   end
@@ -46,6 +50,6 @@ class EquipmentController < ApplicationController
 
   private
     def equipment_params
-      params.require(:equipment).permit(:serial1, :serial2, :mac1, :tech_id, :equip_type_id, :warranty_exp)
+      params.require(:equipment).permit(:serial1, :serial2, :mac1, :tech_id, :equip_type_id, :warranty_exp, :serial)
     end
 end

@@ -26,13 +26,14 @@
       <td>Equipment Type</td>
       <td><%= @equipment.equip_type.description %></td>
     </tr>
+    <!-- Addition of text to warn about expiration date. See helper file for time calculation. -->
     <% if warranty_to_expire?(@equipment) %>
       <tr class="table-danger">
           <td>Warranty Expiration</td>
           <td><%= @equipment.warranty_exp.strftime("%b %d, %y") %></td>
       </tr>
       <tr class="form-text">
-        <td class="text-danger">Warranty will expire in less than 30 days.</td>
+        <td class="text-danger">Warranty will expire in <%= pluralize(days_to_expire(@equipment),"day","days") %></td>
       <tr>
     <% else %>
       <tr>

@@ -34,10 +34,10 @@
           </ul>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <%= form_with model: false, url: info_equipment_path(:serial), method: :get, class: "d-flex" do |f| %>
+        <%= f.search_field :serial, class: "form-control me-2", placeholder: "Search" %>
+        <%= f.submit "Search", class: "btn btn-outline-success" %>
+      <% end %>
     </div>
   </div>
 </nav>

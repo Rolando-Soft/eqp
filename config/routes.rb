@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  get 'equipment/info/:search' => 'equipment#search', as: :info_equipment
   resources :equipment
   resources :equip_types
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
